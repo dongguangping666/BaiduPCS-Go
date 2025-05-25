@@ -24,5 +24,7 @@ func Init_api(port int, auth bool, username string, password string) {
 	initRunOffLineDownload(router)
 	initRunRecycle(router)
 	initRunConfigSet(router)
+	initRunGetQuota(router)
+	initRunGetUserInfo(router)
 	middleware_auth.Engine.Run(fmt.Sprintf(":%d", port))
 }
