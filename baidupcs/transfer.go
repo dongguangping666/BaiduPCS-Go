@@ -2,8 +2,7 @@ package baidupcs
 
 import (
 	"fmt"
-	"github.com/qjfoidnh/BaiduPCS-Go/requester"
-	"github.com/tidwall/gjson"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -12,6 +11,9 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/qjfoidnh/BaiduPCS-Go/requester"
+	"github.com/tidwall/gjson"
 )
 
 type (
@@ -179,7 +181,7 @@ func (pcs *BaiduPCS) GenerateRequestQuery(mode string, params map[string]string)
 		return
 	}
 	defer dataReadCloser.Close()
-	body, err := ioutil.ReadAll(dataReadCloser)
+	body, err := io.ReadAll(dataReadCloser)
 	if err != nil {
 		res["ErrNo"] = "-1"
 		res["ErrMsg"] = "未知错误"
