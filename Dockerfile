@@ -17,8 +17,6 @@ WORKDIR /app
 COPY --from=builder /app/BaiduPCS-Go .
 COPY --from=builder /app/startup.sh .
 
-VOLUME ["/app/Downloads", "/app/.config"]
-
 ENV BDUSS="" PTOKEN="" STOKEN=""
 
 EXPOSE 8080
