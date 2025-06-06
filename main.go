@@ -2266,8 +2266,9 @@ func main() {
 				fmt.Print("test serve\n")
 				port := c.Int("port")
 				auth := c.IsSet("auth")
-				username, password := c.String("username"), c.String("password")
-				pcsapi.Init_api(port, auth, username, password)
+				//username, password := c.String("username"), c.String("password")
+				secret := c.String("secret")
+				pcsapi.Init_api(port, auth, secret)
 				return nil
 			},
 			Flags: []cli.Flag{
@@ -2281,14 +2282,9 @@ func main() {
 					Usage: "是否开启basic auth验证",
 				},
 				cli.StringFlag{
-					Name:  "username",
-					Usage: "basic auth用户名",
-					Value: "admin",
-				},
-				cli.StringFlag{
-					Name:  "password",
-					Usage: "basic auth密码",
-					Value: "adminadmin",
+					Name:  "secret",
+					Usage: "API密钥",
+					Value: os.Getenv("API_SECRET"),
 				},
 			},
 		},

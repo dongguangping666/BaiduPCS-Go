@@ -7,8 +7,8 @@ import (
 )
 
 // TODO: api的配置和初始化
-func Init_api(port int, auth bool, username string, password string) {
-	middleware_auth.Init(auth, username, password)
+func Init_api(port int, auth bool, secret string) {
+	middleware_auth.Init(auth, secret)
 	router := middleware_auth.Router
 	initRunListDirectory(router)
 	initRunChangeDirectory(router)
